@@ -1,4 +1,4 @@
-<?php
+?php
 $ip = $_SERVER['REMOTE_ADDR'];
 $ip_locales = array('127.0.0.1', '::1');
 $is_localhost = in_array($ip, $ip_locales);
