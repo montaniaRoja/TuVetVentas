@@ -8,21 +8,11 @@ if ($is_localhost) {
     $db = pg_connect("host=localhost port=5432 dbname=tuvet user=adolfo password=ofloda01");
 } else {
     // Para entorno remoto (Google Cloud SQL o IP pública)
-    $host = getenv('PGHOST');
-    $port = getenv('PGPORT');
-    $dbname = getenv('PGDATABASE');
-    $user = getenv('PGUSER');
-    $password = getenv('PGPASSWORD');
-
-    echo 'PGHOST: ' . $host . '<br>';
-    echo 'PGPORT: ' . $port . '<br>';
-    echo 'PGDATABASE: ' . $dbname . '<br>';
-    echo 'PGUSER: ' . $user . '<br>';
-    echo 'PGPASSWORD: ' . $password . '<br>';
-
-    if (!$host || !$port || !$dbname || !$user || !$password) {
-        die('Faltan variables de entorno');
-    }
+    $host = "34.122.70.129";
+    $port = "5432";
+    $dbname = "tuvetdatabase";
+    $user = "postgres";
+    $password = "ofloda01";
 
     $db = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
 
@@ -30,3 +20,4 @@ if ($is_localhost) {
         die('Error de conexión: ' . pg_last_error());
     }
 }
+?>
