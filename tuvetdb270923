@@ -1,0 +1,2622 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 14.8 (Ubuntu 14.8-0ubuntu0.22.04.1)
+-- Dumped by pg_dump version 14.8 (Ubuntu 14.8-0ubuntu0.22.04.1)
+
+-- Create the "tuvet" database
+
+
+-- Started on 2023-09-27 13:50:27 CST
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 220 (class 1259 OID 28169)
+-- Name: administradores; Type: TABLE; Schema: public; Owner: apptuvet 
+--
+
+CREATE TABLE public.administradores (
+    admin_id integer NOT NULL,
+    admin_nombre character varying(50),
+    admin_iniciales character varying(10),
+    admin_passwd character varying(25),
+    admin_confpasswd character varying(25),
+    creadapor character varying(50),
+    fecha_creacion date,
+    modificada_por character varying(50),
+    fecha_modificacion date,
+    activosn smallint,
+    id_solicitud integer
+);
+
+
+ALTER TABLE public.administradores OWNER TO apptuvet ;
+
+--
+-- TOC entry 219 (class 1259 OID 28168)
+-- Name: administradores_admin_id_seq; Type: SEQUENCE; Schema: public; Owner: apptuvet 
+--
+
+CREATE SEQUENCE public.administradores_admin_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.administradores_admin_id_seq OWNER TO apptuvet ;
+
+--
+-- TOC entry 3740 (class 0 OID 0)
+-- Dependencies: 219
+-- Name: administradores_admin_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: apptuvet 
+--
+
+ALTER SEQUENCE public.administradores_admin_id_seq OWNED BY public.administradores.admin_id;
+
+
+--
+-- TOC entry 280 (class 1259 OID 35950)
+-- Name: analisis; Type: TABLE; Schema: public; Owner: apptuvet 
+--
+
+CREATE TABLE public.analisis (
+    id integer NOT NULL,
+    nombre_analisis character varying(50),
+    creado_por character varying(50),
+    fecha_creacion date
+);
+
+
+ALTER TABLE public.analisis OWNER TO apptuvet ;
+
+--
+-- TOC entry 279 (class 1259 OID 35949)
+-- Name: analisis_id_seq; Type: SEQUENCE; Schema: public; Owner: apptuvet 
+--
+
+CREATE SEQUENCE public.analisis_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.analisis_id_seq OWNER TO apptuvet ;
+
+--
+-- TOC entry 3741 (class 0 OID 0)
+-- Dependencies: 279
+-- Name: analisis_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: apptuvet 
+--
+
+ALTER SEQUENCE public.analisis_id_seq OWNED BY public.analisis.id;
+
+
+--
+-- TOC entry 282 (class 1259 OID 35957)
+-- Name: analisis_mascota; Type: TABLE; Schema: public; Owner: apptuvet 
+--
+
+CREATE TABLE public.analisis_mascota (
+    id integer NOT NULL,
+    historial_id integer,
+    analisis_id integer
+);
+
+
+ALTER TABLE public.analisis_mascota OWNER TO apptuvet ;
+
+--
+-- TOC entry 281 (class 1259 OID 35956)
+-- Name: analisis_mascota_id_seq; Type: SEQUENCE; Schema: public; Owner: apptuvet 
+--
+
+CREATE SEQUENCE public.analisis_mascota_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.analisis_mascota_id_seq OWNER TO apptuvet ;
+
+--
+-- TOC entry 3742 (class 0 OID 0)
+-- Dependencies: 281
+-- Name: analisis_mascota_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: apptuvet 
+--
+
+ALTER SEQUENCE public.analisis_mascota_id_seq OWNED BY public.analisis_mascota.id;
+
+
+--
+-- TOC entry 222 (class 1259 OID 28176)
+-- Name: atencioncliente; Type: TABLE; Schema: public; Owner: apptuvet 
+--
+
+CREATE TABLE public.atencioncliente (
+    atn_id integer NOT NULL,
+    atn_nombre character varying(50),
+    atn_iniciales character varying(10),
+    atn_passwd character varying(25),
+    atn_confpasswd character varying(25),
+    atnsucursal_asignada integer,
+    creadapor character varying(50),
+    fecha_creacion date,
+    modificada_por character varying(50),
+    fecha_modificacion date,
+    activosn smallint,
+    id_solicitud integer
+);
+
+
+ALTER TABLE public.atencioncliente OWNER TO apptuvet ;
+
+--
+-- TOC entry 221 (class 1259 OID 28175)
+-- Name: atencioncliente_atn_id_seq; Type: SEQUENCE; Schema: public; Owner: apptuvet 
+--
+
+CREATE SEQUENCE public.atencioncliente_atn_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.atencioncliente_atn_id_seq OWNER TO apptuvet ;
+
+--
+-- TOC entry 3743 (class 0 OID 0)
+-- Dependencies: 221
+-- Name: atencioncliente_atn_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: apptuvet 
+--
+
+ALTER SEQUENCE public.atencioncliente_atn_id_seq OWNED BY public.atencioncliente.atn_id;
+
+
+--
+-- TOC entry 230 (class 1259 OID 28224)
+-- Name: categorias; Type: TABLE; Schema: public; Owner: apptuvet 
+--
+
+CREATE TABLE public.categorias (
+    id integer NOT NULL,
+    cat_nombre character varying(30),
+    cat_descripcion character varying(50),
+    creada_por character varying(50),
+    fecha_creacion date,
+    activosn smallint,
+    sucursal character varying(50),
+    usuario_modifica character varying(50),
+    fecha_modificacion date
+);
+
+
+ALTER TABLE public.categorias OWNER TO apptuvet ;
+
+--
+-- TOC entry 229 (class 1259 OID 28223)
+-- Name: categorias_cat_id_seq; Type: SEQUENCE; Schema: public; Owner: apptuvet 
+--
+
+CREATE SEQUENCE public.categorias_cat_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.categorias_cat_id_seq OWNER TO apptuvet ;
+
+--
+-- TOC entry 3744 (class 0 OID 0)
+-- Dependencies: 229
+-- Name: categorias_cat_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: apptuvet 
+--
+
+ALTER SEQUENCE public.categorias_cat_id_seq OWNED BY public.categorias.id;
+
+
+--
+-- TOC entry 244 (class 1259 OID 28372)
+-- Name: clientes; Type: TABLE; Schema: public; Owner: apptuvet 
+--
+
+CREATE TABLE public.clientes (
+    id integer NOT NULL,
+    cliente_nombre character varying(100),
+    cliente_tipodoc character varying(50),
+    cliente_nodoc character varying(50),
+    cliente_giro character varying(100),
+    cliente_dir1 character varying(100),
+    cliente_dir2 character varying(100),
+    cliente_tel character varying(20),
+    cliente_correo character varying(50),
+    esempresasn integer,
+    darcreditosn integer,
+    creado_por character varying(50),
+    fecha_creacion date,
+    usuario_modifica character varying(50),
+    fecha_modificacion date,
+    cliente_saldos numeric(8,2)
+);
+
+
+ALTER TABLE public.clientes OWNER TO apptuvet ;
+
+--
+-- TOC entry 243 (class 1259 OID 28371)
+-- Name: clientes_cliente_id_seq; Type: SEQUENCE; Schema: public; Owner: apptuvet 
+--
+
+CREATE SEQUENCE public.clientes_cliente_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.clientes_cliente_id_seq OWNER TO apptuvet ;
+
+--
+-- TOC entry 3745 (class 0 OID 0)
+-- Dependencies: 243
+-- Name: clientes_cliente_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: apptuvet 
+--
+
+ALTER SEQUENCE public.clientes_cliente_id_seq OWNED BY public.clientes.id;
+
+
+--
+-- TOC entry 268 (class 1259 OID 35824)
+-- Name: codigo03; Type: TABLE; Schema: public; Owner: apptuvet 
+--
+
+CREATE TABLE public.codigo03 (
+    id integer NOT NULL,
+    codigob character varying(50)
+);
+
+
+ALTER TABLE public.codigo03 OWNER TO apptuvet ;
+
+--
+-- TOC entry 267 (class 1259 OID 35823)
+-- Name: codigo03_id_seq; Type: SEQUENCE; Schema: public; Owner: apptuvet 
+--
+
+CREATE SEQUENCE public.codigo03_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.codigo03_id_seq OWNER TO apptuvet ;
+
+--
+-- TOC entry 3746 (class 0 OID 0)
+-- Dependencies: 267
+-- Name: codigo03_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: apptuvet 
+--
+
+ALTER SEQUENCE public.codigo03_id_seq OWNED BY public.codigo03.id;
+
+
+--
+-- TOC entry 228 (class 1259 OID 28217)
+-- Name: componentes; Type: TABLE; Schema: public; Owner: apptuvet 
+--
+
+CREATE TABLE public.componentes (
+    id integer NOT NULL,
+    componente character varying(50),
+    indicaciones character varying(100),
+    creadapor character varying(50),
+    fecha_creacion date,
+    activosn smallint
+);
+
+
+ALTER TABLE public.componentes OWNER TO apptuvet ;
+
+--
+-- TOC entry 227 (class 1259 OID 28216)
+-- Name: componentes_id_seq; Type: SEQUENCE; Schema: public; Owner: apptuvet 
+--
+
+CREATE SEQUENCE public.componentes_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.componentes_id_seq OWNER TO apptuvet ;
+
+--
+-- TOC entry 3747 (class 0 OID 0)
+-- Dependencies: 227
+-- Name: componentes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: apptuvet 
+--
+
+ALTER SEQUENCE public.componentes_id_seq OWNED BY public.componentes.id;
+
+
+--
+-- TOC entry 248 (class 1259 OID 28393)
+-- Name: comprasdetalle; Type: TABLE; Schema: public; Owner: apptuvet 
+--
+
+CREATE TABLE public.comprasdetalle (
+    id integer NOT NULL,
+    compra_id integer,
+    producto_codbarra character varying(25),
+    producto_cantidad integer,
+    producto_bonificacion integer,
+    producto_cantidadtotal integer,
+    producto_costo numeric(8,2),
+    producto_subtotal numeric(8,2),
+    producto_porciva numeric(8,2),
+    producto_totallinea numeric(8,2),
+    producto_costopromedio numeric(8,2)
+);
+
+
+ALTER TABLE public.comprasdetalle OWNER TO apptuvet ;
+
+--
+-- TOC entry 247 (class 1259 OID 28392)
+-- Name: comprasdetalle_id_seq; Type: SEQUENCE; Schema: public; Owner: apptuvet 
+--
+
+CREATE SEQUENCE public.comprasdetalle_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.comprasdetalle_id_seq OWNER TO apptuvet ;
+
+--
+-- TOC entry 3748 (class 0 OID 0)
+-- Dependencies: 247
+-- Name: comprasdetalle_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: apptuvet 
+--
+
+ALTER SEQUENCE public.comprasdetalle_id_seq OWNED BY public.comprasdetalle.id;
+
+
+--
+-- TOC entry 246 (class 1259 OID 28381)
+-- Name: comprasproductos; Type: TABLE; Schema: public; Owner: apptuvet 
+--
+
+CREATE TABLE public.comprasproductos (
+    id integer NOT NULL,
+    proveedor_id integer NOT NULL,
+    compra_condicion character varying(50),
+    compra_fecha date,
+    compra_nodoc character varying(50),
+    compra_subtotal numeric(8,2),
+    compra_montoiva numeric(8,2),
+    compra_montoretencion numeric(8,2),
+    compra_total numeric(8,2)
+);
+
+
+ALTER TABLE public.comprasproductos OWNER TO apptuvet ;
+
+--
+-- TOC entry 245 (class 1259 OID 28380)
+-- Name: comprasproductos_id_seq; Type: SEQUENCE; Schema: public; Owner: apptuvet 
+--
+
+CREATE SEQUENCE public.comprasproductos_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.comprasproductos_id_seq OWNER TO apptuvet ;
+
+--
+-- TOC entry 3749 (class 0 OID 0)
+-- Dependencies: 245
+-- Name: comprasproductos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: apptuvet 
+--
+
+ALTER SEQUENCE public.comprasproductos_id_seq OWNED BY public.comprasproductos.id;
+
+
+--
+-- TOC entry 252 (class 1259 OID 28507)
+-- Name: contador; Type: TABLE; Schema: public; Owner: apptuvet 
+--
+
+CREATE TABLE public.contador (
+    id integer NOT NULL,
+    nombre character varying(50),
+    iniciales character varying(50),
+    passwd character varying(50),
+    confpasswd character varying(50),
+    fecha_creacion date,
+    activosn integer,
+    creadapor character varying(50),
+    modificada_por character varying(50),
+    fecha_modificacion date,
+    id_solicitud integer
+);
+
+
+ALTER TABLE public.contador OWNER TO apptuvet ;
+
+--
+-- TOC entry 251 (class 1259 OID 28506)
+-- Name: contador_id_seq; Type: SEQUENCE; Schema: public; Owner: apptuvet 
+--
+
+CREATE SEQUENCE public.contador_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.contador_id_seq OWNER TO apptuvet ;
+
+--
+-- TOC entry 3750 (class 0 OID 0)
+-- Dependencies: 251
+-- Name: contador_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: apptuvet 
+--
+
+ALTER SEQUENCE public.contador_id_seq OWNED BY public.contador.id;
+
+
+--
+-- TOC entry 258 (class 1259 OID 28540)
+-- Name: dfacturas; Type: TABLE; Schema: public; Owner: apptuvet 
+--
+
+CREATE TABLE public.dfacturas (
+    id integer NOT NULL,
+    fecha date,
+    id_hfactura integer,
+    cod_barra character varying(50),
+    cantidad numeric(8,2),
+    precio numeric(8,2),
+    subtotal numeric(8,2),
+    iva numeric(8,2),
+    descuento integer DEFAULT 0,
+    total_linea numeric(8,2),
+    validado_sn integer,
+    monto_descuento numeric(8,2) DEFAULT 0,
+    monto_costo numeric(8,2),
+    suma_nogravado numeric(8,2),
+    suma_gravado numeric(8,2),
+    anulada_sn integer,
+    CONSTRAINT check_cod_barra_not_null CHECK ((cod_barra IS NOT NULL)),
+    CONSTRAINT check_id_hfactura_not_null CHECK ((id_hfactura IS NOT NULL))
+);
+
+
+ALTER TABLE public.dfacturas OWNER TO apptuvet ;
+
+--
+-- TOC entry 257 (class 1259 OID 28539)
+-- Name: dfacturas_id_seq; Type: SEQUENCE; Schema: public; Owner: apptuvet 
+--
+
+CREATE SEQUENCE public.dfacturas_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.dfacturas_id_seq OWNER TO apptuvet ;
+
+--
+-- TOC entry 3751 (class 0 OID 0)
+-- Dependencies: 257
+-- Name: dfacturas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: apptuvet 
+--
+
+ALTER SEQUENCE public.dfacturas_id_seq OWNED BY public.dfacturas.id;
+
+
+--
+-- TOC entry 262 (class 1259 OID 35765)
+-- Name: dtraslados; Type: TABLE; Schema: public; Owner: apptuvet 
+--
+
+CREATE TABLE public.dtraslados (
+    id integer NOT NULL,
+    id_traslado integer,
+    cod_barra character varying(50),
+    cantidad integer,
+    status character varying(50)
+);
+
+
+ALTER TABLE public.dtraslados OWNER TO apptuvet ;
+
+--
+-- TOC entry 261 (class 1259 OID 35764)
+-- Name: dtraslados_id_seq; Type: SEQUENCE; Schema: public; Owner: apptuvet 
+--
+
+CREATE SEQUENCE public.dtraslados_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.dtraslados_id_seq OWNER TO apptuvet ;
+
+--
+-- TOC entry 3752 (class 0 OID 0)
+-- Dependencies: 261
+-- Name: dtraslados_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: apptuvet 
+--
+
+ALTER SEQUENCE public.dtraslados_id_seq OWNED BY public.dtraslados.id;
+
+
+--
+-- TOC entry 254 (class 1259 OID 28514)
+-- Name: errores; Type: TABLE; Schema: public; Owner: apptuvet 
+--
+
+CREATE TABLE public.errores (
+    error_id integer NOT NULL,
+    descripcion character varying(100),
+    fecha date
+);
+
+
+ALTER TABLE public.errores OWNER TO apptuvet ;
+
+--
+-- TOC entry 253 (class 1259 OID 28513)
+-- Name: errores_error_id_seq; Type: SEQUENCE; Schema: public; Owner: apptuvet 
+--
+
+CREATE SEQUENCE public.errores_error_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.errores_error_id_seq OWNER TO apptuvet ;
+
+--
+-- TOC entry 3753 (class 0 OID 0)
+-- Dependencies: 253
+-- Name: errores_error_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: apptuvet 
+--
+
+ALTER SEQUENCE public.errores_error_id_seq OWNED BY public.errores.error_id;
+
+
+--
+-- TOC entry 238 (class 1259 OID 28276)
+-- Name: existencias; Type: TABLE; Schema: public; Owner: apptuvet 
+--
+
+CREATE TABLE public.existencias (
+    id integer NOT NULL,
+    id_sucursal integer,
+    codbarra character varying(50),
+    existencia integer,
+    anaquel character varying(25),
+    CONSTRAINT ck_cantidad_positiva CHECK ((existencia >= 0))
+);
+
+
+ALTER TABLE public.existencias OWNER TO apptuvet ;
+
+--
+-- TOC entry 237 (class 1259 OID 28275)
+-- Name: existencias_id_seq; Type: SEQUENCE; Schema: public; Owner: apptuvet 
+--
+
+CREATE SEQUENCE public.existencias_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.existencias_id_seq OWNER TO apptuvet ;
+
+--
+-- TOC entry 3754 (class 0 OID 0)
+-- Dependencies: 237
+-- Name: existencias_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: apptuvet 
+--
+
+ALTER SEQUENCE public.existencias_id_seq OWNED BY public.existencias.id;
+
+
+--
+-- TOC entry 266 (class 1259 OID 35796)
+-- Name: extractosclientes; Type: TABLE; Schema: public; Owner: apptuvet 
+--
+
+CREATE TABLE public.extractosclientes (
+    id integer NOT NULL,
+    doc_numero character varying(50),
+    fecha date,
+    cargo numeric(8,2),
+    abono numeric(8,2),
+    saldo numeric(8,2),
+    usuario character varying(50),
+    sucursal integer,
+    nombre_cliente character varying(100),
+    cliente_id integer
+);
+
+
+ALTER TABLE public.extractosclientes OWNER TO apptuvet ;
+
+--
+-- TOC entry 265 (class 1259 OID 35795)
+-- Name: extractosclientes_id_seq; Type: SEQUENCE; Schema: public; Owner: apptuvet 
+--
+
+CREATE SEQUENCE public.extractosclientes_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.extractosclientes_id_seq OWNER TO apptuvet ;
+
+--
+-- TOC entry 3755 (class 0 OID 0)
+-- Dependencies: 265
+-- Name: extractosclientes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: apptuvet 
+--
+
+ALTER SEQUENCE public.extractosclientes_id_seq OWNED BY public.extractosclientes.id;
+
+
+--
+-- TOC entry 264 (class 1259 OID 35784)
+-- Name: extractosproveedores; Type: TABLE; Schema: public; Owner: apptuvet 
+--
+
+CREATE TABLE public.extractosproveedores (
+    id integer NOT NULL,
+    prov_id integer,
+    doc_numero character varying(50),
+    fecha date,
+    cargo numeric(8,2),
+    abono numeric(8,2),
+    saldo numeric(8,2),
+    usuario character varying(50),
+    sucursal integer
+);
+
+
+ALTER TABLE public.extractosproveedores OWNER TO apptuvet ;
+
+--
+-- TOC entry 263 (class 1259 OID 35783)
+-- Name: extractosproveedores_id_seq; Type: SEQUENCE; Schema: public; Owner: apptuvet 
+--
+
+CREATE SEQUENCE public.extractosproveedores_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.extractosproveedores_id_seq OWNER TO apptuvet ;
+
+--
+-- TOC entry 3756 (class 0 OID 0)
+-- Dependencies: 263
+-- Name: extractosproveedores_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: apptuvet 
+--
+
+ALTER SEQUENCE public.extractosproveedores_id_seq OWNED BY public.extractosproveedores.id;
+
+
+--
+-- TOC entry 216 (class 1259 OID 28145)
+-- Name: gerentes; Type: TABLE; Schema: public; Owner: apptuvet 
+--
+
+CREATE TABLE public.gerentes (
+    gerente_id integer NOT NULL,
+    gerente_nombre character varying(50),
+    gerente_iniciales character varying(10),
+    gerente_passwd character varying(25),
+    gerente_confpasswd character varying(25),
+    creada_por character varying(50),
+    fecha_creacion date,
+    modificada_por character varying(50),
+    fecha_modificacion date,
+    gtesucursal_asignada integer,
+    activosn smallint,
+    id_solicitud integer
+);
+
+
+ALTER TABLE public.gerentes OWNER TO apptuvet ;
+
+--
+-- TOC entry 215 (class 1259 OID 28144)
+-- Name: gerentes_gerente_id_seq; Type: SEQUENCE; Schema: public; Owner: apptuvet 
+--
+
+CREATE SEQUENCE public.gerentes_gerente_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.gerentes_gerente_id_seq OWNER TO apptuvet ;
+
+--
+-- TOC entry 3757 (class 0 OID 0)
+-- Dependencies: 215
+-- Name: gerentes_gerente_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: apptuvet 
+--
+
+ALTER SEQUENCE public.gerentes_gerente_id_seq OWNED BY public.gerentes.gerente_id;
+
+
+--
+-- TOC entry 256 (class 1259 OID 28523)
+-- Name: hfacturas; Type: TABLE; Schema: public; Owner: apptuvet 
+--
+
+CREATE TABLE public.hfacturas (
+    id integer NOT NULL,
+    fecha_creacion date,
+    numero_impreso character varying(50),
+    id_cliente integer,
+    id_sucursal integer,
+    id_promo integer,
+    subtotal numeric(8,2),
+    monto_gravado numeric(8,2),
+    impuesto numeric(8,2),
+    monto_nogravado numeric(8,2),
+    total_linea numeric(8,2),
+    descuentos numeric(8,2) DEFAULT 0,
+    costo numeric(8,2),
+    pago_efectivo numeric(8,2) DEFAULT 0,
+    pago_tarjeta numeric(8,2) DEFAULT 0,
+    pago_credito numeric(8,2) DEFAULT 0,
+    numero_autorizacion character varying(50),
+    pagada_sn integer DEFAULT 0,
+    creada_por character varying(50),
+    cobrada_por character varying(50),
+    anulada integer DEFAULT 0,
+    anulada_por character varying(50),
+    fecha_cobro date,
+    fecha_anulacion date,
+    nombre_cliente character varying(100),
+    condicion_pago character varying(100),
+    lineas_factura integer,
+    hora_inicio time without time zone,
+    hora_final time without time zone
+);
+
+
+ALTER TABLE public.hfacturas OWNER TO apptuvet ;
+
+--
+-- TOC entry 255 (class 1259 OID 28522)
+-- Name: hfacturas_id_seq; Type: SEQUENCE; Schema: public; Owner: apptuvet 
+--
+
+CREATE SEQUENCE public.hfacturas_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.hfacturas_id_seq OWNER TO apptuvet ;
+
+--
+-- TOC entry 3758 (class 0 OID 0)
+-- Dependencies: 255
+-- Name: hfacturas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: apptuvet 
+--
+
+ALTER SEQUENCE public.hfacturas_id_seq OWNED BY public.hfacturas.id;
+
+
+--
+-- TOC entry 276 (class 1259 OID 35936)
+-- Name: historial_mascotas; Type: TABLE; Schema: public; Owner: apptuvet 
+--
+
+CREATE TABLE public.historial_mascotas (
+    id integer NOT NULL,
+    mascota_id integer,
+    fecha_visita date,
+    motivo_visita character varying(50),
+    temperatura_mascota character varying(50),
+    peso_mascota character varying(50),
+    sintomas_mascota character varying(100),
+    diagnostico character varying(100),
+    proxima_cita date,
+    medico_atendio character varying(50),
+    sucursal_atendio integer
+);
+
+
+ALTER TABLE public.historial_mascotas OWNER TO apptuvet ;
+
+--
+-- TOC entry 275 (class 1259 OID 35935)
+-- Name: historial_mascotas_id_seq; Type: SEQUENCE; Schema: public; Owner: apptuvet 
+--
+
+CREATE SEQUENCE public.historial_mascotas_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.historial_mascotas_id_seq OWNER TO apptuvet ;
+
+--
+-- TOC entry 3759 (class 0 OID 0)
+-- Dependencies: 275
+-- Name: historial_mascotas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: apptuvet 
+--
+
+ALTER SEQUENCE public.historial_mascotas_id_seq OWNED BY public.historial_mascotas.id;
+
+
+--
+-- TOC entry 260 (class 1259 OID 35758)
+-- Name: htraslado; Type: TABLE; Schema: public; Owner: apptuvet 
+--
+
+CREATE TABLE public.htraslado (
+    id integer NOT NULL,
+    fecha_enviado date,
+    fecha_recibido date,
+    suc_origen character varying(50),
+    suc_destino character varying(50),
+    usuario_crea character varying(100),
+    usuario_recibe character varying(100),
+    estado character varying(50),
+    usuario_autoriza character varying(50)
+);
+
+
+ALTER TABLE public.htraslado OWNER TO apptuvet ;
+
+--
+-- TOC entry 259 (class 1259 OID 35757)
+-- Name: htraslado_id_seq; Type: SEQUENCE; Schema: public; Owner: apptuvet 
+--
+
+CREATE SEQUENCE public.htraslado_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.htraslado_id_seq OWNER TO apptuvet ;
+
+--
+-- TOC entry 3760 (class 0 OID 0)
+-- Dependencies: 259
+-- Name: htraslado_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: apptuvet 
+--
+
+ALTER SEQUENCE public.htraslado_id_seq OWNED BY public.htraslado.id;
+
+
+--
+-- TOC entry 242 (class 1259 OID 28303)
+-- Name: impuestos; Type: TABLE; Schema: public; Owner: apptuvet 
+--
+
+CREATE TABLE public.impuestos (
+    imp_id integer NOT NULL,
+    imp_nombre character varying(50),
+    imp_porc numeric(8,2),
+    creado_por character varying(100),
+    fecha_creacion date,
+    activosn integer,
+    modificado_por character varying(100)
+);
+
+
+ALTER TABLE public.impuestos OWNER TO apptuvet ;
+
+--
+-- TOC entry 241 (class 1259 OID 28302)
+-- Name: impuestos_imp_id_seq; Type: SEQUENCE; Schema: public; Owner: apptuvet 
+--
+
+CREATE SEQUENCE public.impuestos_imp_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.impuestos_imp_id_seq OWNER TO apptuvet ;
+
+--
+-- TOC entry 3761 (class 0 OID 0)
+-- Dependencies: 241
+-- Name: impuestos_imp_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: apptuvet 
+--
+
+ALTER SEQUENCE public.impuestos_imp_id_seq OWNED BY public.impuestos.imp_id;
+
+
+--
+-- TOC entry 214 (class 1259 OID 28132)
+-- Name: ippermitidas; Type: TABLE; Schema: public; Owner: apptuvet 
+--
+
+CREATE TABLE public.ippermitidas (
+    ip_id integer NOT NULL,
+    id_sucursal integer,
+    ip_asignada character varying(20),
+    creada_por character varying(50),
+    fecha_creacion date
+);
+
+
+ALTER TABLE public.ippermitidas OWNER TO apptuvet ;
+
+--
+-- TOC entry 213 (class 1259 OID 28131)
+-- Name: ippermitidas_ip_id_seq; Type: SEQUENCE; Schema: public; Owner: apptuvet 
+--
+
+CREATE SEQUENCE public.ippermitidas_ip_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.ippermitidas_ip_id_seq OWNER TO apptuvet ;
+
+--
+-- TOC entry 3762 (class 0 OID 0)
+-- Dependencies: 213
+-- Name: ippermitidas_ip_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: apptuvet 
+--
+
+ALTER SEQUENCE public.ippermitidas_ip_id_seq OWNED BY public.ippermitidas.ip_id;
+
+
+--
+-- TOC entry 250 (class 1259 OID 28410)
+-- Name: kardex; Type: TABLE; Schema: public; Owner: apptuvet 
+--
+
+CREATE TABLE public.kardex (
+    id integer NOT NULL,
+    sucursal_id integer,
+    codbarra character varying(25),
+    doc_no character varying(50),
+    cant_ingreso integer,
+    cant_salio integer,
+    fecha_transaccion date,
+    fecha date,
+    anulada integer DEFAULT 0,
+    id_hfactura integer
+);
+
+
+ALTER TABLE public.kardex OWNER TO apptuvet ;
+
+--
+-- TOC entry 249 (class 1259 OID 28409)
+-- Name: kardex_id_seq; Type: SEQUENCE; Schema: public; Owner: apptuvet 
+--
+
+CREATE SEQUENCE public.kardex_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.kardex_id_seq OWNER TO apptuvet ;
+
+--
+-- TOC entry 3763 (class 0 OID 0)
+-- Dependencies: 249
+-- Name: kardex_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: apptuvet 
+--
+
+ALTER SEQUENCE public.kardex_id_seq OWNED BY public.kardex.id;
+
+
+--
+-- TOC entry 226 (class 1259 OID 28203)
+-- Name: marcas; Type: TABLE; Schema: public; Owner: apptuvet 
+--
+
+CREATE TABLE public.marcas (
+    id integer NOT NULL,
+    marca_nombre character varying(50),
+    marca_paisorigen character varying(25),
+    proveedor_id integer,
+    creadapor character varying(50),
+    fecha_creacion date,
+    activosn smallint,
+    sucursal_crea character varying(50),
+    modificada_por character varying(50),
+    fecha_modificacion date
+);
+
+
+ALTER TABLE public.marcas OWNER TO apptuvet ;
+
+--
+-- TOC entry 225 (class 1259 OID 28202)
+-- Name: marcas_marca_id_seq; Type: SEQUENCE; Schema: public; Owner: apptuvet 
+--
+
+CREATE SEQUENCE public.marcas_marca_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.marcas_marca_id_seq OWNER TO apptuvet ;
+
+--
+-- TOC entry 3764 (class 0 OID 0)
+-- Dependencies: 225
+-- Name: marcas_marca_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: apptuvet 
+--
+
+ALTER SEQUENCE public.marcas_marca_id_seq OWNED BY public.marcas.id;
+
+
+--
+-- TOC entry 272 (class 1259 OID 35903)
+-- Name: mascotas; Type: TABLE; Schema: public; Owner: apptuvet 
+--
+
+CREATE TABLE public.mascotas (
+    id integer NOT NULL,
+    nombre_mascota character varying(50),
+    propietario_id integer,
+    especie character varying(50),
+    raza_id integer,
+    edad character varying(50),
+    sexo character varying(50),
+    tipo_pelo character varying(50),
+    color character varying(50),
+    tamanio character varying(50),
+    caracteristicas character varying(100),
+    estado_reproductivo character varying(50),
+    chip character varying(50),
+    habitat character varying(50),
+    dieta character varying(100),
+    activa_sn integer,
+    usuario_crea character varying(50),
+    fecha_creacion date,
+    usuario_modifica character varying(50),
+    fecha_modificacion date,
+    sucursal_crea character varying(50)
+);
+
+
+ALTER TABLE public.mascotas OWNER TO apptuvet ;
+
+--
+-- TOC entry 271 (class 1259 OID 35902)
+-- Name: mascotas_id_seq; Type: SEQUENCE; Schema: public; Owner: apptuvet 
+--
+
+CREATE SEQUENCE public.mascotas_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.mascotas_id_seq OWNER TO apptuvet ;
+
+--
+-- TOC entry 3765 (class 0 OID 0)
+-- Dependencies: 271
+-- Name: mascotas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: apptuvet 
+--
+
+ALTER SEQUENCE public.mascotas_id_seq OWNED BY public.mascotas.id;
+
+
+--
+-- TOC entry 218 (class 1259 OID 28157)
+-- Name: mvz; Type: TABLE; Schema: public; Owner: apptuvet 
+--
+
+CREATE TABLE public.mvz (
+    mvz_id integer NOT NULL,
+    mvz_nombre character varying(50),
+    mvz_iniciales character varying(10),
+    mvz_passwd character varying(25),
+    mvz_confpasswd character varying(25),
+    mvzsucursal_asignada integer,
+    fecha_creacion date,
+    creada_por character varying(50),
+    modificada_por character varying(50),
+    fecha_modificacion date,
+    activosn smallint,
+    id_solicitud integer
+);
+
+
+ALTER TABLE public.mvz OWNER TO apptuvet ;
+
+--
+-- TOC entry 217 (class 1259 OID 28156)
+-- Name: mvz_mvz_id_seq; Type: SEQUENCE; Schema: public; Owner: apptuvet 
+--
+
+CREATE SEQUENCE public.mvz_mvz_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.mvz_mvz_id_seq OWNER TO apptuvet ;
+
+--
+-- TOC entry 3766 (class 0 OID 0)
+-- Dependencies: 217
+-- Name: mvz_mvz_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: apptuvet 
+--
+
+ALTER SEQUENCE public.mvz_mvz_id_seq OWNED BY public.mvz.mvz_id;
+
+
+--
+-- TOC entry 236 (class 1259 OID 28250)
+-- Name: productos; Type: TABLE; Schema: public; Owner: apptuvet 
+--
+
+CREATE TABLE public.productos (
+    id integer NOT NULL,
+    prod_codbarra character varying(25),
+    prod_nombre character varying(75),
+    prod_univenta character varying(30),
+    id_marca integer,
+    id_categorias integer,
+    id_subcategoria integer,
+    prod_compraminima integer DEFAULT 0,
+    prod_distminima integer DEFAULT 0,
+    prod_esgravadosn integer,
+    prod_costopromedio numeric(8,2) DEFAULT 0,
+    prod_markup numeric(8,2) DEFAULT 0,
+    prod_preciopublico numeric(8,2) DEFAULT 0,
+    prod_porcdescuento numeric(4,2),
+    descuento_unidad numeric(8,2) DEFAULT 0,
+    creado_por character varying(50),
+    fecha_creacion date,
+    foto bytea,
+    prod_esinventariosn integer,
+    prod_ultimocosto numeric(8,2) DEFAULT 0,
+    escalas character varying(100),
+    activosn integer,
+    codigo_impuesto integer,
+    porcentaje_impuesto numeric(8,2),
+    prod_ventaminima integer,
+    modificada_por character varying(50),
+    fecha_modificacion date,
+    sucursal_crea character varying(50)
+);
+
+
+ALTER TABLE public.productos OWNER TO apptuvet ;
+
+--
+-- TOC entry 235 (class 1259 OID 28249)
+-- Name: productos_prod_id_seq; Type: SEQUENCE; Schema: public; Owner: apptuvet 
+--
+
+CREATE SEQUENCE public.productos_prod_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.productos_prod_id_seq OWNER TO apptuvet ;
+
+--
+-- TOC entry 3767 (class 0 OID 0)
+-- Dependencies: 235
+-- Name: productos_prod_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: apptuvet 
+--
+
+ALTER SEQUENCE public.productos_prod_id_seq OWNED BY public.productos.id;
+
+
+--
+-- TOC entry 224 (class 1259 OID 28188)
+-- Name: proveedores; Type: TABLE; Schema: public; Owner: apptuvet 
+--
+
+CREATE TABLE public.proveedores (
+    id integer NOT NULL,
+    prov_nombre character varying(50),
+    prov_nit character varying(20),
+    prov_nrc character varying(20),
+    prov_nombrecheque character varying(50),
+    prov_ldireccion1 character varying(50),
+    prov_ldireccion2 character varying(50),
+    prov_telefono character varying(15),
+    prov_correo character varying(30),
+    prov_nombrecontacto character varying(50),
+    creadapor character varying(50),
+    fecha_creacion date,
+    modificada_por character varying(50),
+    fecha_modificacion date,
+    activosn smallint,
+    sucursal_crea character varying(50),
+    saldo numeric(8,2)
+);
+
+
+ALTER TABLE public.proveedores OWNER TO apptuvet ;
+
+--
+-- TOC entry 223 (class 1259 OID 28187)
+-- Name: proveedores_prov_id_seq; Type: SEQUENCE; Schema: public; Owner: apptuvet 
+--
+
+CREATE SEQUENCE public.proveedores_prov_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.proveedores_prov_id_seq OWNER TO apptuvet ;
+
+--
+-- TOC entry 3768 (class 0 OID 0)
+-- Dependencies: 223
+-- Name: proveedores_prov_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: apptuvet 
+--
+
+ALTER SEQUENCE public.proveedores_prov_id_seq OWNED BY public.proveedores.id;
+
+
+--
+-- TOC entry 270 (class 1259 OID 35865)
+-- Name: pruebas_conexion; Type: TABLE; Schema: public; Owner: apptuvet 
+--
+
+CREATE TABLE public.pruebas_conexion (
+    id integer NOT NULL,
+    resultado character varying(50),
+    entero integer
+);
+
+
+ALTER TABLE public.pruebas_conexion OWNER TO apptuvet ;
+
+--
+-- TOC entry 269 (class 1259 OID 35864)
+-- Name: pruebas_conexion_id_seq; Type: SEQUENCE; Schema: public; Owner: apptuvet 
+--
+
+CREATE SEQUENCE public.pruebas_conexion_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pruebas_conexion_id_seq OWNER TO apptuvet ;
+
+--
+-- TOC entry 3769 (class 0 OID 0)
+-- Dependencies: 269
+-- Name: pruebas_conexion_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: apptuvet 
+--
+
+ALTER SEQUENCE public.pruebas_conexion_id_seq OWNED BY public.pruebas_conexion.id;
+
+
+--
+-- TOC entry 240 (class 1259 OID 28284)
+-- Name: puntosdereorden; Type: TABLE; Schema: public; Owner: apptuvet 
+--
+
+CREATE TABLE public.puntosdereorden (
+    id integer NOT NULL,
+    id_sucursal integer,
+    codbarra character varying(50),
+    ptoreorden integer,
+    creadopor character varying(50),
+    fecha_creacion date,
+    modificadopor character varying(50),
+    fecha_modificacion date,
+    id_producto integer
+);
+
+
+ALTER TABLE public.puntosdereorden OWNER TO apptuvet ;
+
+--
+-- TOC entry 239 (class 1259 OID 28283)
+-- Name: puntosdereorden_id_seq; Type: SEQUENCE; Schema: public; Owner: apptuvet 
+--
+
+CREATE SEQUENCE public.puntosdereorden_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.puntosdereorden_id_seq OWNER TO apptuvet ;
+
+--
+-- TOC entry 3770 (class 0 OID 0)
+-- Dependencies: 239
+-- Name: puntosdereorden_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: apptuvet 
+--
+
+ALTER SEQUENCE public.puntosdereorden_id_seq OWNED BY public.puntosdereorden.id;
+
+
+--
+-- TOC entry 274 (class 1259 OID 35912)
+-- Name: razas; Type: TABLE; Schema: public; Owner: apptuvet 
+--
+
+CREATE TABLE public.razas (
+    id integer NOT NULL,
+    nombre_raza character varying(50),
+    nombre_especie character varying(50),
+    usuario_crea character varying(50),
+    fecha_creacion date,
+    sucursal_crea character varying(50)
+);
+
+
+ALTER TABLE public.razas OWNER TO apptuvet ;
+
+--
+-- TOC entry 273 (class 1259 OID 35911)
+-- Name: razas_id_seq; Type: SEQUENCE; Schema: public; Owner: apptuvet 
+--
+
+CREATE SEQUENCE public.razas_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.razas_id_seq OWNER TO apptuvet ;
+
+--
+-- TOC entry 3771 (class 0 OID 0)
+-- Dependencies: 273
+-- Name: razas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: apptuvet 
+--
+
+ALTER SEQUENCE public.razas_id_seq OWNED BY public.razas.id;
+
+
+--
+-- TOC entry 278 (class 1259 OID 35943)
+-- Name: recetas; Type: TABLE; Schema: public; Owner: apptuvet 
+--
+
+CREATE TABLE public.recetas (
+    id integer NOT NULL,
+    historial_id integer,
+    medicamento character varying(50),
+    dosis character varying(50)
+);
+
+
+ALTER TABLE public.recetas OWNER TO apptuvet ;
+
+--
+-- TOC entry 277 (class 1259 OID 35942)
+-- Name: recetas_id_seq; Type: SEQUENCE; Schema: public; Owner: apptuvet 
+--
+
+CREATE SEQUENCE public.recetas_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.recetas_id_seq OWNER TO apptuvet ;
+
+--
+-- TOC entry 3772 (class 0 OID 0)
+-- Dependencies: 277
+-- Name: recetas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: apptuvet 
+--
+
+ALTER SEQUENCE public.recetas_id_seq OWNED BY public.recetas.id;
+
+
+--
+-- TOC entry 234 (class 1259 OID 28243)
+-- Name: solicitudcontrasenia; Type: TABLE; Schema: public; Owner: apptuvet 
+--
+
+CREATE TABLE public.solicitudcontrasenia (
+    id integer NOT NULL,
+    nombreusuario character varying(50),
+    correousuario character varying(50),
+    rolusuario character varying(50),
+    ipsolicitud character varying(20),
+    fecha_solicitud date,
+    iniciales character varying(50),
+    procesadosn integer,
+    passwd character varying(50),
+    confpasswd character varying(50)
+);
+
+
+ALTER TABLE public.solicitudcontrasenia OWNER TO apptuvet ;
+
+--
+-- TOC entry 233 (class 1259 OID 28242)
+-- Name: solicitudcontrasenia_id_seq; Type: SEQUENCE; Schema: public; Owner: apptuvet 
+--
+
+CREATE SEQUENCE public.solicitudcontrasenia_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.solicitudcontrasenia_id_seq OWNER TO apptuvet ;
+
+--
+-- TOC entry 3773 (class 0 OID 0)
+-- Dependencies: 233
+-- Name: solicitudcontrasenia_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: apptuvet 
+--
+
+ALTER SEQUENCE public.solicitudcontrasenia_id_seq OWNED BY public.solicitudcontrasenia.id;
+
+
+--
+-- TOC entry 232 (class 1259 OID 28231)
+-- Name: subcategorias; Type: TABLE; Schema: public; Owner: apptuvet 
+--
+
+CREATE TABLE public.subcategorias (
+    sub_id integer NOT NULL,
+    sub_nombre character varying(30),
+    categoria_id integer,
+    creada_por character varying(50),
+    fecha_creacion date,
+    activosn smallint
+);
+
+
+ALTER TABLE public.subcategorias OWNER TO apptuvet ;
+
+--
+-- TOC entry 231 (class 1259 OID 28230)
+-- Name: subcategorias_sub_id_seq; Type: SEQUENCE; Schema: public; Owner: apptuvet 
+--
+
+CREATE SEQUENCE public.subcategorias_sub_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.subcategorias_sub_id_seq OWNER TO apptuvet ;
+
+--
+-- TOC entry 3774 (class 0 OID 0)
+-- Dependencies: 231
+-- Name: subcategorias_sub_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: apptuvet 
+--
+
+ALTER SEQUENCE public.subcategorias_sub_id_seq OWNED BY public.subcategorias.sub_id;
+
+
+--
+-- TOC entry 212 (class 1259 OID 28125)
+-- Name: sucursales; Type: TABLE; Schema: public; Owner: apptuvet 
+--
+
+CREATE TABLE public.sucursales (
+    id integer NOT NULL,
+    sucursal_nombre character varying(30),
+    sucursal_direccion character varying(55),
+    sucursal_tel character varying(15),
+    sucursal_cel character varying(15),
+    creada_por character varying(50),
+    fecha_creacion date,
+    fecha_modificacion date,
+    modificado_por character varying(50)
+);
+
+
+ALTER TABLE public.sucursales OWNER TO apptuvet ;
+
+--
+-- TOC entry 211 (class 1259 OID 28124)
+-- Name: sucursales_sucursal_id_seq; Type: SEQUENCE; Schema: public; Owner: apptuvet 
+--
+
+CREATE SEQUENCE public.sucursales_sucursal_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.sucursales_sucursal_id_seq OWNER TO apptuvet ;
+
+--
+-- TOC entry 3775 (class 0 OID 0)
+-- Dependencies: 211
+-- Name: sucursales_sucursal_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: apptuvet 
+--
+
+ALTER SEQUENCE public.sucursales_sucursal_id_seq OWNED BY public.sucursales.id;
+
+
+--
+-- TOC entry 3428 (class 2604 OID 28172)
+-- Name: administradores admin_id; Type: DEFAULT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.administradores ALTER COLUMN admin_id SET DEFAULT nextval('public.administradores_admin_id_seq'::regclass);
+
+
+--
+-- TOC entry 3477 (class 2604 OID 35953)
+-- Name: analisis id; Type: DEFAULT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.analisis ALTER COLUMN id SET DEFAULT nextval('public.analisis_id_seq'::regclass);
+
+
+--
+-- TOC entry 3478 (class 2604 OID 35960)
+-- Name: analisis_mascota id; Type: DEFAULT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.analisis_mascota ALTER COLUMN id SET DEFAULT nextval('public.analisis_mascota_id_seq'::regclass);
+
+
+--
+-- TOC entry 3429 (class 2604 OID 28179)
+-- Name: atencioncliente atn_id; Type: DEFAULT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.atencioncliente ALTER COLUMN atn_id SET DEFAULT nextval('public.atencioncliente_atn_id_seq'::regclass);
+
+
+--
+-- TOC entry 3433 (class 2604 OID 28227)
+-- Name: categorias id; Type: DEFAULT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.categorias ALTER COLUMN id SET DEFAULT nextval('public.categorias_cat_id_seq'::regclass);
+
+
+--
+-- TOC entry 3448 (class 2604 OID 28375)
+-- Name: clientes id; Type: DEFAULT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.clientes ALTER COLUMN id SET DEFAULT nextval('public.clientes_cliente_id_seq'::regclass);
+
+
+--
+-- TOC entry 3471 (class 2604 OID 35827)
+-- Name: codigo03 id; Type: DEFAULT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.codigo03 ALTER COLUMN id SET DEFAULT nextval('public.codigo03_id_seq'::regclass);
+
+
+--
+-- TOC entry 3432 (class 2604 OID 28220)
+-- Name: componentes id; Type: DEFAULT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.componentes ALTER COLUMN id SET DEFAULT nextval('public.componentes_id_seq'::regclass);
+
+
+--
+-- TOC entry 3450 (class 2604 OID 28396)
+-- Name: comprasdetalle id; Type: DEFAULT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.comprasdetalle ALTER COLUMN id SET DEFAULT nextval('public.comprasdetalle_id_seq'::regclass);
+
+
+--
+-- TOC entry 3449 (class 2604 OID 28384)
+-- Name: comprasproductos id; Type: DEFAULT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.comprasproductos ALTER COLUMN id SET DEFAULT nextval('public.comprasproductos_id_seq'::regclass);
+
+
+--
+-- TOC entry 3453 (class 2604 OID 28510)
+-- Name: contador id; Type: DEFAULT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.contador ALTER COLUMN id SET DEFAULT nextval('public.contador_id_seq'::regclass);
+
+
+--
+-- TOC entry 3462 (class 2604 OID 28543)
+-- Name: dfacturas id; Type: DEFAULT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.dfacturas ALTER COLUMN id SET DEFAULT nextval('public.dfacturas_id_seq'::regclass);
+
+
+--
+-- TOC entry 3468 (class 2604 OID 35768)
+-- Name: dtraslados id; Type: DEFAULT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.dtraslados ALTER COLUMN id SET DEFAULT nextval('public.dtraslados_id_seq'::regclass);
+
+
+--
+-- TOC entry 3454 (class 2604 OID 28517)
+-- Name: errores error_id; Type: DEFAULT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.errores ALTER COLUMN error_id SET DEFAULT nextval('public.errores_error_id_seq'::regclass);
+
+
+--
+-- TOC entry 3444 (class 2604 OID 28279)
+-- Name: existencias id; Type: DEFAULT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.existencias ALTER COLUMN id SET DEFAULT nextval('public.existencias_id_seq'::regclass);
+
+
+--
+-- TOC entry 3470 (class 2604 OID 35799)
+-- Name: extractosclientes id; Type: DEFAULT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.extractosclientes ALTER COLUMN id SET DEFAULT nextval('public.extractosclientes_id_seq'::regclass);
+
+
+--
+-- TOC entry 3469 (class 2604 OID 35787)
+-- Name: extractosproveedores id; Type: DEFAULT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.extractosproveedores ALTER COLUMN id SET DEFAULT nextval('public.extractosproveedores_id_seq'::regclass);
+
+
+--
+-- TOC entry 3426 (class 2604 OID 28148)
+-- Name: gerentes gerente_id; Type: DEFAULT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.gerentes ALTER COLUMN gerente_id SET DEFAULT nextval('public.gerentes_gerente_id_seq'::regclass);
+
+
+--
+-- TOC entry 3456 (class 2604 OID 28526)
+-- Name: hfacturas id; Type: DEFAULT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.hfacturas ALTER COLUMN id SET DEFAULT nextval('public.hfacturas_id_seq'::regclass);
+
+
+--
+-- TOC entry 3475 (class 2604 OID 35939)
+-- Name: historial_mascotas id; Type: DEFAULT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.historial_mascotas ALTER COLUMN id SET DEFAULT nextval('public.historial_mascotas_id_seq'::regclass);
+
+
+--
+-- TOC entry 3467 (class 2604 OID 35761)
+-- Name: htraslado id; Type: DEFAULT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.htraslado ALTER COLUMN id SET DEFAULT nextval('public.htraslado_id_seq'::regclass);
+
+
+--
+-- TOC entry 3447 (class 2604 OID 28306)
+-- Name: impuestos imp_id; Type: DEFAULT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.impuestos ALTER COLUMN imp_id SET DEFAULT nextval('public.impuestos_imp_id_seq'::regclass);
+
+
+--
+-- TOC entry 3425 (class 2604 OID 28135)
+-- Name: ippermitidas ip_id; Type: DEFAULT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.ippermitidas ALTER COLUMN ip_id SET DEFAULT nextval('public.ippermitidas_ip_id_seq'::regclass);
+
+
+--
+-- TOC entry 3452 (class 2604 OID 28413)
+-- Name: kardex id; Type: DEFAULT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.kardex ALTER COLUMN id SET DEFAULT nextval('public.kardex_id_seq'::regclass);
+
+
+--
+-- TOC entry 3431 (class 2604 OID 28206)
+-- Name: marcas id; Type: DEFAULT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.marcas ALTER COLUMN id SET DEFAULT nextval('public.marcas_marca_id_seq'::regclass);
+
+
+--
+-- TOC entry 3473 (class 2604 OID 35906)
+-- Name: mascotas id; Type: DEFAULT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.mascotas ALTER COLUMN id SET DEFAULT nextval('public.mascotas_id_seq'::regclass);
+
+
+--
+-- TOC entry 3427 (class 2604 OID 28160)
+-- Name: mvz mvz_id; Type: DEFAULT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.mvz ALTER COLUMN mvz_id SET DEFAULT nextval('public.mvz_mvz_id_seq'::regclass);
+
+
+--
+-- TOC entry 3439 (class 2604 OID 28253)
+-- Name: productos id; Type: DEFAULT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.productos ALTER COLUMN id SET DEFAULT nextval('public.productos_prod_id_seq'::regclass);
+
+
+--
+-- TOC entry 3430 (class 2604 OID 28191)
+-- Name: proveedores id; Type: DEFAULT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.proveedores ALTER COLUMN id SET DEFAULT nextval('public.proveedores_prov_id_seq'::regclass);
+
+
+--
+-- TOC entry 3472 (class 2604 OID 35868)
+-- Name: pruebas_conexion id; Type: DEFAULT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.pruebas_conexion ALTER COLUMN id SET DEFAULT nextval('public.pruebas_conexion_id_seq'::regclass);
+
+
+--
+-- TOC entry 3446 (class 2604 OID 28287)
+-- Name: puntosdereorden id; Type: DEFAULT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.puntosdereorden ALTER COLUMN id SET DEFAULT nextval('public.puntosdereorden_id_seq'::regclass);
+
+
+--
+-- TOC entry 3474 (class 2604 OID 35915)
+-- Name: razas id; Type: DEFAULT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.razas ALTER COLUMN id SET DEFAULT nextval('public.razas_id_seq'::regclass);
+
+
+--
+-- TOC entry 3476 (class 2604 OID 35946)
+-- Name: recetas id; Type: DEFAULT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.recetas ALTER COLUMN id SET DEFAULT nextval('public.recetas_id_seq'::regclass);
+
+
+--
+-- TOC entry 3435 (class 2604 OID 28246)
+-- Name: solicitudcontrasenia id; Type: DEFAULT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.solicitudcontrasenia ALTER COLUMN id SET DEFAULT nextval('public.solicitudcontrasenia_id_seq'::regclass);
+
+
+--
+-- TOC entry 3434 (class 2604 OID 28234)
+-- Name: subcategorias sub_id; Type: DEFAULT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.subcategorias ALTER COLUMN sub_id SET DEFAULT nextval('public.subcategorias_sub_id_seq'::regclass);
+
+
+--
+-- TOC entry 3424 (class 2604 OID 28128)
+-- Name: sucursales id; Type: DEFAULT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.sucursales ALTER COLUMN id SET DEFAULT nextval('public.sucursales_sucursal_id_seq'::regclass);
+
+
+--
+-- TOC entry 3488 (class 2606 OID 28174)
+-- Name: administradores administradores_pkey; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.administradores
+    ADD CONSTRAINT administradores_pkey PRIMARY KEY (admin_id);
+
+
+--
+-- TOC entry 3570 (class 2606 OID 35962)
+-- Name: analisis_mascota analisis_mascota_pkey; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.analisis_mascota
+    ADD CONSTRAINT analisis_mascota_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3568 (class 2606 OID 35955)
+-- Name: analisis analisis_pkey; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.analisis
+    ADD CONSTRAINT analisis_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3490 (class 2606 OID 28181)
+-- Name: atencioncliente atencioncliente_pkey; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.atencioncliente
+    ADD CONSTRAINT atencioncliente_pkey PRIMARY KEY (atn_id);
+
+
+--
+-- TOC entry 3506 (class 2606 OID 28229)
+-- Name: categorias categorias_pkey; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.categorias
+    ADD CONSTRAINT categorias_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3524 (class 2606 OID 28379)
+-- Name: clientes clientes_pkey; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.clientes
+    ADD CONSTRAINT clientes_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3556 (class 2606 OID 35829)
+-- Name: codigo03 codigo03_pkey; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.codigo03
+    ADD CONSTRAINT codigo03_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3504 (class 2606 OID 28222)
+-- Name: componentes componentes_pkey; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.componentes
+    ADD CONSTRAINT componentes_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3532 (class 2606 OID 28398)
+-- Name: comprasdetalle comprasdetalle_pkey; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.comprasdetalle
+    ADD CONSTRAINT comprasdetalle_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3530 (class 2606 OID 28386)
+-- Name: comprasproductos comprasproductos_pkey; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.comprasproductos
+    ADD CONSTRAINT comprasproductos_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3536 (class 2606 OID 28512)
+-- Name: contador contador_pkey; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.contador
+    ADD CONSTRAINT contador_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3544 (class 2606 OID 28545)
+-- Name: dfacturas dfacturas_pkey; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.dfacturas
+    ADD CONSTRAINT dfacturas_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3550 (class 2606 OID 35770)
+-- Name: dtraslados dtraslados_pkey; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.dtraslados
+    ADD CONSTRAINT dtraslados_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3538 (class 2606 OID 28519)
+-- Name: errores errores_pkey; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.errores
+    ADD CONSTRAINT errores_pkey PRIMARY KEY (error_id);
+
+
+--
+-- TOC entry 3518 (class 2606 OID 28281)
+-- Name: existencias existencias_pkey; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.existencias
+    ADD CONSTRAINT existencias_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3554 (class 2606 OID 35801)
+-- Name: extractosclientes extractosclientes_pkey; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.extractosclientes
+    ADD CONSTRAINT extractosclientes_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3552 (class 2606 OID 35789)
+-- Name: extractosproveedores extractosproveedores_pkey; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.extractosproveedores
+    ADD CONSTRAINT extractosproveedores_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3484 (class 2606 OID 28150)
+-- Name: gerentes gerentes_pkey; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.gerentes
+    ADD CONSTRAINT gerentes_pkey PRIMARY KEY (gerente_id);
+
+
+--
+-- TOC entry 3540 (class 2606 OID 28528)
+-- Name: hfacturas hfacturas_pkey; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.hfacturas
+    ADD CONSTRAINT hfacturas_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3564 (class 2606 OID 35941)
+-- Name: historial_mascotas historial_mascotas_pkey; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.historial_mascotas
+    ADD CONSTRAINT historial_mascotas_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3548 (class 2606 OID 35763)
+-- Name: htraslado htraslado_pkey; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.htraslado
+    ADD CONSTRAINT htraslado_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3522 (class 2606 OID 28308)
+-- Name: impuestos impuestos_pkey; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.impuestos
+    ADD CONSTRAINT impuestos_pkey PRIMARY KEY (imp_id);
+
+
+--
+-- TOC entry 3482 (class 2606 OID 28137)
+-- Name: ippermitidas ippermitidas_pkey; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.ippermitidas
+    ADD CONSTRAINT ippermitidas_pkey PRIMARY KEY (ip_id);
+
+
+--
+-- TOC entry 3534 (class 2606 OID 28415)
+-- Name: kardex kardex_pkey; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.kardex
+    ADD CONSTRAINT kardex_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3500 (class 2606 OID 28215)
+-- Name: marcas marca_repetida; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.marcas
+    ADD CONSTRAINT marca_repetida UNIQUE (marca_nombre);
+
+
+--
+-- TOC entry 3502 (class 2606 OID 28208)
+-- Name: marcas marcas_pkey; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.marcas
+    ADD CONSTRAINT marcas_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3560 (class 2606 OID 35910)
+-- Name: mascotas mascotas_pkey; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.mascotas
+    ADD CONSTRAINT mascotas_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3486 (class 2606 OID 28162)
+-- Name: mvz mvz_pkey; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.mvz
+    ADD CONSTRAINT mvz_pkey PRIMARY KEY (mvz_id);
+
+
+--
+-- TOC entry 3492 (class 2606 OID 28199)
+-- Name: proveedores nit_repetido; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.proveedores
+    ADD CONSTRAINT nit_repetido UNIQUE (prov_nit);
+
+
+--
+-- TOC entry 3494 (class 2606 OID 28197)
+-- Name: proveedores nombre_repetido; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.proveedores
+    ADD CONSTRAINT nombre_repetido UNIQUE (prov_nombre);
+
+
+--
+-- TOC entry 3496 (class 2606 OID 28201)
+-- Name: proveedores nrc_repetido; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.proveedores
+    ADD CONSTRAINT nrc_repetido UNIQUE (prov_nrc);
+
+
+--
+-- TOC entry 3542 (class 2606 OID 35831)
+-- Name: hfacturas numero_impreso; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.hfacturas
+    ADD CONSTRAINT numero_impreso UNIQUE (numero_impreso);
+
+
+--
+-- TOC entry 3514 (class 2606 OID 28257)
+-- Name: productos productos_pkey; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.productos
+    ADD CONSTRAINT productos_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3498 (class 2606 OID 28193)
+-- Name: proveedores proveedores_pkey; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.proveedores
+    ADD CONSTRAINT proveedores_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3558 (class 2606 OID 35870)
+-- Name: pruebas_conexion pruebas_conexion_pkey; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.pruebas_conexion
+    ADD CONSTRAINT pruebas_conexion_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3520 (class 2606 OID 28289)
+-- Name: puntosdereorden puntosdereorden_pkey; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.puntosdereorden
+    ADD CONSTRAINT puntosdereorden_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3562 (class 2606 OID 35917)
+-- Name: razas razas_pkey; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.razas
+    ADD CONSTRAINT razas_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3566 (class 2606 OID 35948)
+-- Name: recetas recetas_pkey; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.recetas
+    ADD CONSTRAINT recetas_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3512 (class 2606 OID 28248)
+-- Name: solicitudcontrasenia solicitudcontrasenia_pkey; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.solicitudcontrasenia
+    ADD CONSTRAINT solicitudcontrasenia_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3510 (class 2606 OID 28236)
+-- Name: subcategorias subcategorias_pkey; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.subcategorias
+    ADD CONSTRAINT subcategorias_pkey PRIMARY KEY (sub_id);
+
+
+--
+-- TOC entry 3480 (class 2606 OID 28130)
+-- Name: sucursales sucursales_pkey; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.sucursales
+    ADD CONSTRAINT sucursales_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3546 (class 2606 OID 28557)
+-- Name: dfacturas uk_id_hfactura_cod_barra; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.dfacturas
+    ADD CONSTRAINT uk_id_hfactura_cod_barra UNIQUE (id_hfactura, cod_barra);
+
+
+--
+-- TOC entry 3508 (class 2606 OID 28323)
+-- Name: categorias unico_cat_nombre; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.categorias
+    ADD CONSTRAINT unico_cat_nombre UNIQUE (cat_nombre);
+
+
+--
+-- TOC entry 3516 (class 2606 OID 28259)
+-- Name: productos unico_codigo_barra; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.productos
+    ADD CONSTRAINT unico_codigo_barra UNIQUE (prod_codbarra);
+
+
+--
+-- TOC entry 3526 (class 2606 OID 35858)
+-- Name: clientes unique_nombre; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.clientes
+    ADD CONSTRAINT unique_nombre UNIQUE (cliente_nombre);
+
+
+--
+-- TOC entry 3528 (class 2606 OID 28521)
+-- Name: clientes uniquectm_const; Type: CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.clientes
+    ADD CONSTRAINT uniquectm_const UNIQUE (cliente_nodoc);
+
+
+--
+-- TOC entry 3595 (class 2606 OID 35973)
+-- Name: analisis_mascota fk_analisis; Type: FK CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.analisis_mascota
+    ADD CONSTRAINT fk_analisis FOREIGN KEY (analisis_id) REFERENCES public.analisis(id);
+
+
+--
+-- TOC entry 3576 (class 2606 OID 28237)
+-- Name: subcategorias fk_categoria_id; Type: FK CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.subcategorias
+    ADD CONSTRAINT fk_categoria_id FOREIGN KEY (categoria_id) REFERENCES public.categorias(id);
+
+
+--
+-- TOC entry 3586 (class 2606 OID 28529)
+-- Name: hfacturas fk_cliente_id; Type: FK CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.hfacturas
+    ADD CONSTRAINT fk_cliente_id FOREIGN KEY (id_cliente) REFERENCES public.clientes(id);
+
+
+--
+-- TOC entry 3592 (class 2606 OID 35859)
+-- Name: extractosclientes fk_cliente_id; Type: FK CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.extractosclientes
+    ADD CONSTRAINT fk_cliente_id FOREIGN KEY (cliente_id) REFERENCES public.clientes(id);
+
+
+--
+-- TOC entry 3594 (class 2606 OID 35923)
+-- Name: mascotas fk_clientes; Type: FK CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.mascotas
+    ADD CONSTRAINT fk_clientes FOREIGN KEY (propietario_id) REFERENCES public.clientes(id);
+
+
+--
+-- TOC entry 3585 (class 2606 OID 28421)
+-- Name: kardex fk_cod_barra; Type: FK CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.kardex
+    ADD CONSTRAINT fk_cod_barra FOREIGN KEY (codbarra) REFERENCES public.productos(prod_codbarra);
+
+
+--
+-- TOC entry 3580 (class 2606 OID 28339)
+-- Name: puntosdereorden fk_codbarra_productos; Type: FK CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.puntosdereorden
+    ADD CONSTRAINT fk_codbarra_productos FOREIGN KEY (codbarra) REFERENCES public.productos(prod_codbarra);
+
+
+--
+-- TOC entry 3589 (class 2606 OID 28551)
+-- Name: dfacturas fk_codigo_id; Type: FK CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.dfacturas
+    ADD CONSTRAINT fk_codigo_id FOREIGN KEY (cod_barra) REFERENCES public.productos(prod_codbarra);
+
+
+--
+-- TOC entry 3582 (class 2606 OID 28399)
+-- Name: comprasdetalle fk_compras_id; Type: FK CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.comprasdetalle
+    ADD CONSTRAINT fk_compras_id FOREIGN KEY (compra_id) REFERENCES public.comprasproductos(id);
+
+
+--
+-- TOC entry 3588 (class 2606 OID 28546)
+-- Name: dfacturas fk_factura_id; Type: FK CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.dfacturas
+    ADD CONSTRAINT fk_factura_id FOREIGN KEY (id_hfactura) REFERENCES public.hfacturas(id);
+
+
+--
+-- TOC entry 3578 (class 2606 OID 28265)
+-- Name: productos fk_id_categorias; Type: FK CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.productos
+    ADD CONSTRAINT fk_id_categorias FOREIGN KEY (id_categorias) REFERENCES public.categorias(id);
+
+
+--
+-- TOC entry 3577 (class 2606 OID 28260)
+-- Name: productos fk_id_marca; Type: FK CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.productos
+    ADD CONSTRAINT fk_id_marca FOREIGN KEY (id_marca) REFERENCES public.marcas(id);
+
+
+--
+-- TOC entry 3575 (class 2606 OID 28209)
+-- Name: marcas fk_id_proveedor2; Type: FK CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.marcas
+    ADD CONSTRAINT fk_id_proveedor2 FOREIGN KEY (proveedor_id) REFERENCES public.proveedores(id);
+
+
+--
+-- TOC entry 3579 (class 2606 OID 28270)
+-- Name: productos fk_id_subcategoria; Type: FK CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.productos
+    ADD CONSTRAINT fk_id_subcategoria FOREIGN KEY (id_subcategoria) REFERENCES public.subcategorias(sub_id);
+
+
+--
+-- TOC entry 3583 (class 2606 OID 28404)
+-- Name: comprasdetalle fk_prod_codbarra; Type: FK CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.comprasdetalle
+    ADD CONSTRAINT fk_prod_codbarra FOREIGN KEY (producto_codbarra) REFERENCES public.productos(prod_codbarra);
+
+
+--
+-- TOC entry 3581 (class 2606 OID 28387)
+-- Name: comprasproductos fk_proveedor_id; Type: FK CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.comprasproductos
+    ADD CONSTRAINT fk_proveedor_id FOREIGN KEY (proveedor_id) REFERENCES public.proveedores(id);
+
+
+--
+-- TOC entry 3591 (class 2606 OID 35790)
+-- Name: extractosproveedores fk_proveedor_id; Type: FK CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.extractosproveedores
+    ADD CONSTRAINT fk_proveedor_id FOREIGN KEY (prov_id) REFERENCES public.proveedores(id);
+
+
+--
+-- TOC entry 3593 (class 2606 OID 35918)
+-- Name: mascotas fk_razas; Type: FK CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.mascotas
+    ADD CONSTRAINT fk_razas FOREIGN KEY (raza_id) REFERENCES public.razas(id);
+
+
+--
+-- TOC entry 3572 (class 2606 OID 28151)
+-- Name: gerentes fk_sucursal_asignada; Type: FK CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.gerentes
+    ADD CONSTRAINT fk_sucursal_asignada FOREIGN KEY (gtesucursal_asignada) REFERENCES public.sucursales(id);
+
+
+--
+-- TOC entry 3573 (class 2606 OID 28163)
+-- Name: mvz fk_sucursal_asignada; Type: FK CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.mvz
+    ADD CONSTRAINT fk_sucursal_asignada FOREIGN KEY (mvzsucursal_asignada) REFERENCES public.sucursales(id);
+
+
+--
+-- TOC entry 3574 (class 2606 OID 28182)
+-- Name: atencioncliente fk_sucursal_asignada; Type: FK CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.atencioncliente
+    ADD CONSTRAINT fk_sucursal_asignada FOREIGN KEY (atnsucursal_asignada) REFERENCES public.sucursales(id);
+
+
+--
+-- TOC entry 3571 (class 2606 OID 28138)
+-- Name: ippermitidas fk_sucursal_id; Type: FK CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.ippermitidas
+    ADD CONSTRAINT fk_sucursal_id FOREIGN KEY (id_sucursal) REFERENCES public.sucursales(id);
+
+
+--
+-- TOC entry 3584 (class 2606 OID 28416)
+-- Name: kardex fk_sucursal_id; Type: FK CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.kardex
+    ADD CONSTRAINT fk_sucursal_id FOREIGN KEY (sucursal_id) REFERENCES public.sucursales(id);
+
+
+--
+-- TOC entry 3587 (class 2606 OID 28534)
+-- Name: hfacturas fk_sucursal_id; Type: FK CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.hfacturas
+    ADD CONSTRAINT fk_sucursal_id FOREIGN KEY (id_sucursal) REFERENCES public.sucursales(id);
+
+
+--
+-- TOC entry 3590 (class 2606 OID 35771)
+-- Name: dtraslados fk_traslado_id; Type: FK CONSTRAINT; Schema: public; Owner: apptuvet 
+--
+
+ALTER TABLE ONLY public.dtraslados
+    ADD CONSTRAINT fk_traslado_id FOREIGN KEY (id_traslado) REFERENCES public.dtraslados(id);
+
+
+
+
+
+-- Completed on 2023-09-27 13:50:27 CST
+
+--
+-- PostgreSQL database dump complete
+--
+

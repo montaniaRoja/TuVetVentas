@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>TuVEt</title>
+	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link href='http://fonts.googleapis.com/css?family=Ropa+Sans' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/responsiveslides.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="js/responsiveslides.min.js"></script>
+	<script>
+		// You can also use "$(window).load(function() {"
+		$(function () {
+
+			// Slideshow 1
+			$("#slider1").responsiveSlides({
+				maxwidth: 1600,
+				speed: 600
+			});
+		});
+	</script>
+	<style type="text/css">
+		#navegador ul{
+		   list-style-type: none;
+		   text-align: center;
+		}
+		#navegador li{
+		   display: inline;
+		   text-align: center;
+		   margin: 0 10px 0 0;
+		}
+		#navegador li a {
+		   padding: 2px 7px 2px 7px;
+		   color: #666;
+		   background-color: #eeeeee;
+		   border: 1px solid #ccc;
+		   text-decoration: none;
+		}
+		#navegador li a:hover{
+		   background-color: #333333;
+		   color: #ffffff;
+		}
+		   </style>
+</head>
+
+<body>
+
+
+	<!--start-header-->
+	<div class="header">
+		<div class="wrap">
+			<!--start-logo-->
+			<div class="logo">
+				<a href="index.html" style="font-size: 50px;">Sistema Administracion TuVet</a>
+			</div>
+			<!--end-logo-->
+			<!--start-top-nav-->
+			<div class="top-nav">
+				<ul>
+
+					<li><a href="index.html">Inicio</a></li>
+
+					<li class="active"><a href="solicitud.php">Solicitud de Accesso</a></li>
+
+				</ul>
+			</div>
+			<div class="clear"> </div>
+			<!--end-top-nav-->
+		</div>
+		<!--end-header-->
+	</div>
+	<div class="clear"> </div>
+	<!--start-image-slider---->
+	<div class="image-slider">
+		<!-- Slideshow 1 -->
+		<ul class="rslides" id="slider1">
+			<li><img src="imagenes/slider-image1.jpg" alt=""></li>
+			<li><img src="imagenes/slider-image2.jpg" alt=""></li>
+			<li><img src="imagenes/slider-image3.jpg" alt=""></li>
+		</ul>
+		<!-- Slideshow 2 -->
+	</div>
+	<!--End-image-slider---->
+	<div class="clear"> </div>
+	<div class="content-grids">
+		<div class="wrap">
+			<div id="navegador">
+				<ul>
+				<li><a href="vms/admin/">Administrador</a></li>
+				<li><a href="vms/gerente/">Gerente</a></li>
+				<li><a href="vms/mvz/">Medico Veterinario</a></li>
+				<li><a href="vms/atencionalcliente/">Ventas</a></li>
+				<li><a href="vms/contadores/">Contabilidad</a></li>
+				<li><a href="vms/bodega/">CD</a></li>
+				<li><a href="vms/televentas/">Televentas</a></li>
+				</ul>
+				</div>
+		</div>
+	</div>
+	<div class="wrap">
+		<div class="content-box">
+			<div class="section group">
+				<div class="col_1_of_3 span_1_of_3 frist">
+
+				</div>
+				<div class="col_1_of_3 span_1_of_3 second">
+
+				</div>
+				<div class="col_1_of_3 span_1_of_3 frist">
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="clear"> </div>
+	<div class="footer">
+		<div class="wrap">
+			<div class="footer-left">
+				<ul>
+					<li><a href="index.html">Inicio</a></li>
+					<li><a href="solicitud.php">Solicitar Usuario o Contraseña</a></li>
+				</ul>
+			</div>
+
+			<div class="clear"> </div>
+		</div>
+	</div>
+	<!--end-wrap-->
+</body>
+
+</html>

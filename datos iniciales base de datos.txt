@@ -1,0 +1,31 @@
+--instruccion 1
+insert into sucursales (sucursal_nombre,sucursal_direccion, sucursal_tel, sucursal_cel,creada_por,fecha_creacion)
+values ('sucursal para desarrollo','virtual','5555-5555','5656-6565','Script BD',now());
+
+
+--instruccion 2
+insert into administradores (admin_nombre, admin_iniciales,admin_passwd,admin_confpasswd, creadapor,fecha_creacion, activosn)
+values ('Admin','Admin','7uv372023','7uv372023','Script BD',now(),1);
+
+
+--instruccion 3
+insert into categorias (cat_nombre, cat_descripcion, creada_por, fecha_creacion,activosn)
+values ('seleccione categoria', 'categoria creada para', 'Script BD', now(),1);
+
+
+--instruccion 4
+insert into ippermitidas (id_sucursal,ip_asignada,creada_por,fecha_creacion)
+values (1,'127.0.0.1','Script BD',now());
+
+
+--instruccion 5
+insert into proveedores (prov_nombre, prov_nit, prov_nrc,prov_nombrecheque, prov_ldireccion1,prov_ldireccion2,prov_telefono,
+						prov_correo,prov_nombrecontacto,creadapor,fecha_creacion,activosn) values
+						('Seleccione proveedor','0000-000000-00-1','000000-0','portador','direccion','direccion','5599-9878'
+						,'correo@correo.com','vendedor','Script BD',now(),1)
+
+
+
+--instruccion 6
+insert into marcas (marca_nombre, marca_paisorigen,proveedor_id, creadapor, fecha_creacion,activosn,sucursal_crea)
+values ('Seleccione marca','no',1,'Script BD',now(),1,1);
