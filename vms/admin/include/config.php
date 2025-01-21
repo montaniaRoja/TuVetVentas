@@ -14,6 +14,12 @@ if ($is_localhost) {
     $user = getenv('PGUSER');
     $password = getenv('PGPASSWORD');
 
+    echo 'PGHOST: ' . $host . '<br>';
+    echo 'PGPORT: ' . $port . '<br>';
+    echo 'PGDATABASE: ' . $dbname . '<br>';
+    echo 'PGUSER: ' . $user . '<br>';
+    echo 'PGPASSWORD: ' . $password . '<br>';
+
     if (!$host || !$port || !$dbname || !$user || !$password) {
         die('Faltan variables de entorno');
     }
@@ -24,4 +30,3 @@ if ($is_localhost) {
         die('Error de conexión: ' . pg_last_error());
     }
 }
-?>
