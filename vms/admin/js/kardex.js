@@ -1,4 +1,4 @@
-document.getElementById("codigo").addEventListener("keyup", getProductos)
+document.getElementById("codigo").addEventListener("keyup", getProductos) 
 
 function getProductos() {
 	console.log("buscando productos");
